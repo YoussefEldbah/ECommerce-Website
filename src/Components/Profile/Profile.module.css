@@ -1,0 +1,10 @@
+.mycard {
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adjust the shadow as needed */
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .mycard:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Adjust the shadow on hover as needed */
+  }
+  

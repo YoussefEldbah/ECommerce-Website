@@ -1,0 +1,29 @@
+/* SocialLinks.module.css */
+
+  
+  .socialLink {
+    
+    font-size: 20px;
+    margin-right: 16px;
+    transition: color 0.3s ease;
+   cursor: pointer;
+  }
+  
+  .socialLink:hover {
+    color: #0aad0a; /* Change color on hover */
+  }
+
+ul {
+    list-style-type: none; /* Remove default list style */
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Style for list items */
+  li {
+    display: inline-block; /* Display list items in the same line */
+    margin-right: 10px; /* Adjust spacing between list items */
+  }
+  
+  /* Style for images */
+ 
