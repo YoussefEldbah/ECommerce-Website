@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import styles from './FeatureProducts.module.css';
 import axios from 'axios';
 import { BallTriangle } from 'react-loader-spinner';
 import { useQuery } from 'react-query';
@@ -24,6 +23,10 @@ const FeatureProducts = () => {
 
   async function addCart(id) {
     if (!localStorage.getItem("userToken")) {
+      toast('Please login first to add products to cart.', {
+        icon: '🔒',
+        position: 'bottom-right'
+      });
       navigate('/login');
       return;
     }
@@ -55,6 +58,10 @@ const FeatureProducts = () => {
 
   async function addWish(id) {
     if (!localStorage.getItem("userToken")) {
+      toast('Please login first to use wishlist.', {
+        icon: '🔒',
+        position: 'bottom-right'
+      });
       navigate('/login');
       return;
     }

@@ -1,8 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import styles from './Details.module.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useQuery } from 'react-query';
 import Loader from '../Loader/Loader';
 import Slider from 'react-slick';
 import { CartContext } from '../../Context/cartContext';
@@ -26,8 +24,9 @@ const Details = () => {
     setDetails(data.data)
     setLoading(false)
   }
-  useEffect(() =>
-     { getProductsDetaials(params.id) }, [])
+  useEffect(() => {
+    getProductsDetaials(params.id)
+  }, [params.id])
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to top on component mount
   }, []);
@@ -35,13 +34,17 @@ const Details = () => {
 
   async function addCart(id) {
     if (!localStorage.getItem("userToken")) {
+      toast('Please login first to add products to cart.', {
+        icon: '🔒',
+        position: 'bottom-right'
+      });
       navigate('/login');
       return;
     }
 
     let res = await addToCart(id)
     console.log(res);
-    if (res?.data?.status == "success") {
+    if (res?.data?.status === "success") {
       toast.success('Product Added Successfully', {
         position: "bottom-right",
         autoClose: 5000,
@@ -52,17 +55,13 @@ const Details = () => {
         className: 'bg-main text-white p-3'
 
       })
-      setNumOfCartItems(res?.data?.numOfCartItems||0)
+      setNumOfCartItems(res?.data?.numOfCartItems || 0)
 
     } else
       toast.error('Cannot Add Product',
         {
           position: "top-right"
         });
-
-    {
-
-    }
   }
   return (<>
     <div className="container my-5 pt-5">

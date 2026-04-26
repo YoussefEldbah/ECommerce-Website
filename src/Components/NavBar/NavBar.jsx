@@ -1,13 +1,11 @@
 import React from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../Assets/images/freshcart-logo.svg'
 import { useContext } from 'react';
 import { TokenContext } from '../../Context/Token';
-import { CartContext } from '../../Context/cartContext';
 
 const NavBar = () => {
   let { token, setToken } = useContext(TokenContext)
-  let{numOfCartItems}=useContext(CartContext)
   let navigate = useNavigate()
 
   function LogOut() {
@@ -26,15 +24,9 @@ const NavBar = () => {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse  navbar-collapse" id="navbarSupportedContent">
-          {token ? <ul className="navbar-nav  me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav  me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link" activeClassName="active" aria-current="page" to={'home'}>Home</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link  " activeClassName="active" to={'cart'}>Cart</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link " activeClassName="active" to={'wishlist'}>Wishlist</NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link " activeClassName="active" to={'products'}>Products</NavLink>
@@ -45,20 +37,22 @@ const NavBar = () => {
             <li className="nav-item">
               <NavLink className="nav-link " activeClassName="active" to={'brands'}>Brands</NavLink>
             </li>
+            {token ? <>
+            <li className="nav-item">
+              <NavLink className="nav-link  " activeClassName="active" to={'cart'}>Cart</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link " activeClassName="active" to={'wishlist'}>Wishlist</NavLink>
+            </li>
             <li className="nav-item">
               <NavLink className="nav-link " activeClassName="active" to={'allorders'}>Orders</NavLink>
             </li>
-
-
-
-          </ul> : null}
+            </> : null}
+          </ul>
 
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 
             {token ? <>
-             {/* <li className="nav-item position-relative">
-                <NavLink className="nav-link "  to={'cart'}><i className="fa-solid fs-3 fa-cart-shopping"> <span className=' position-absolute top-0 end-0 rounded-2  p-1 fs-5   rounded-circle-2 bg-main text-white'> {numOfCartItems}</span> </i></NavLink>
-              </li> */}
               <li className="nav-item">
               <NavLink to={'profile'} className="nav-link me-1 " activeClassName="active" ><i className="fa-solid fs-5  me-2 fa-user"></i>Profile</NavLink>
             </li>
